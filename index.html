@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>司南生态助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <div class="app-logo">司</div>
+        <div class="brand-text">
+          <span class="brand-title">司南生态助手</span>
+          <span class="brand-sub">设计生态工作台</span>
+        </div>
+      </div>
+      <nav class="sidebar__nav" id="sidebarNav"></nav>
+      <div class="sidebar__user">
+        <div class="su-avatar">设</div>
+        <div class="su-info">
+          <div class="su-name">设计师 · 小南</div>
+          <div class="su-role">视觉设计 / 司南生态</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar__title">
+          <h1 id="headerTitle">首页</h1>
+          <span id="headerSub">设计生态一站式工作台</span>
+        </div>
+        <div class="topbar__actions">
+          <div class="search">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <input type="text" id="globalSearch" placeholder="搜索规范 / 工具 / 案例…" />
+          </div>
+          <button class="icon-btn" id="headerAction" aria-label="more">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content" id="tabContent">
+        <div class="content__inner">
+
+          <!-- ========== 首页 ========== -->
+          <section class="page is-active" id="page-home" data-page="home">
+            <div class="home-grid">
+              <!-- 左：聊天 -->
+              <div class="home-main">
+                <div class="chat" id="chat">
+                  <div class="chat__scroll" id="chatScroll">
+                    <div class="chat-msg chat-msg--bot">
+                      <div class="chat-avatar">司</div>
+                      <div class="chat-bubble">你好，我是司南生态助手 👋<br/>可以帮你查规范、找工具、看优秀案例。试试问我点什么？</div>
+                    </div>
+                  </div>
+                  <div class="chat-quick" id="chatQuick"></div>
+                  <div class="chat-input">
+                    <button class="chat-input__file" id="fileBtn" aria-label="文件上传" title="文件上传">
+                      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M16.5 6.5l-7 7a3 3 0 104.24 4.24l7-7a5 5 0 00-7.07-7.07l-7 7a7 7 0 109.9 9.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                    </button>
+                    <input type="file" id="fileInput" hidden multiple />
+                    <input type="text" class="chat-input__text" id="chatInput" placeholder="输入你的问题，回车发送…" />
+                    <button class="chat-input__send" id="sendBtn" aria-label="发送">
+                      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 12l16-7-7 16-2-7-7-2z" fill="currentColor"/></svg>
+                    </button>
+                  </div>
+                  <div class="chat-files" id="chatFiles"></div>
+                </div>
+              </div>
+
+              <!-- 右：指引 + 现有工具 -->
+              <div class="home-side">
+                <div class="section">
+                  <div class="section__head">
+                    <h2 class="section__title">新手指引</h2>
+                    <span class="section__more">全部 ›</span>
+                  </div>
+                  <div class="guide-grid" id="guideGrid"></div>
+                </div>
+                <div class="section">
+                  <div class="section__head">
+                    <h2 class="section__title">现有的工具</h2>
+                  </div>
+                  <div class="tool-links" id="existingTools"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== 工具 ========== -->
+          <section class="page" id="page-tools" data-page="tools">
+            <div class="section">
+              <div class="section__head">
+                <h2 class="section__title">常用网站</h2>
+                <span class="section__more" data-add="sites">+ 添加</span>
+              </div>
+              <div class="chip-grid" id="commonSites"></div>
+              <div class="add-row" id="addSiteRow" hidden>
+                <input type="text" class="add-row__input" id="addSiteInput" placeholder="请输入网站名称…" />
+                <button class="add-row__btn" id="addSiteBtn">添加</button>
+              </div>
+            </div>
+            <div class="section">
+              <div class="section__head"><h2 class="section__title">常用工具</h2></div>
+              <div class="card-list grid-2" id="commonTools"></div>
+            </div>
+            <div class="section">
+              <div class="section__head"><h2 class="section__title">设计网站</h2></div>
+              <div class="card-list grid-2" id="designSites"></div>
+            </div>
+          </section>
+
+          <!-- ========== 设计规范 ========== -->
+          <section class="page" id="page-specs" data-page="specs">
+            <div class="spec-tabs" id="specTabs"></div>
+            <div class="accordion" id="specAccordion"></div>
+          </section>
+
+          <!-- ========== 优秀案例 ========== -->
+          <section class="page" id="page-cases" data-page="cases">
+            <div class="filters" id="caseFilters"></div>
+            <div class="case-count" id="caseCount"></div>
+            <div class="case-grid" id="caseGrid"></div>
+          </section>
+
+          <!-- ========== 我的 ========== -->
+          <section class="page" id="page-mine" data-page="mine">
+            <div class="profile">
+              <div class="profile__avatar">设</div>
+              <div class="profile__info">
+                <div class="profile__name">设计师 · 小南</div>
+                <div class="profile__role">视觉设计 / 司南生态</div>
+              </div>
+              <button class="profile__edit">编辑资料</button>
+            </div>
+
+            <div class="stat-row" id="statRow"></div>
+
+            <div class="mine-grid">
+              <div class="section">
+                <div class="section__head">
+                  <h2 class="section__title">我的收藏</h2>
+                  <span class="section__more">管理 ›</span>
+                </div>
+                <div class="fav-tabs" id="favTabs"></div>
+                <div class="card-list" id="favList"></div>
+              </div>
+
+              <div class="section">
+                <div class="section__head"><h2 class="section__title">上传案例</h2></div>
+                <div class="menu-list" id="uploadMenu"></div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
